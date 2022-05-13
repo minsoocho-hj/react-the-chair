@@ -1,0 +1,53 @@
+.section {
+	background-color: #212423;
+	text-align: center;
+	width: 100%;
+	padding: 1rem 0;
+	display: flex;
+	flex-direction: column;
+}
+.flex {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.title {
+	color: #747163;
+	font-size: 5.3rem;
+	font-weight: 400;
+	line-height: -0.09rem;
+	letter-spacing: -0.6rem;
+	margin-bottom: 2rem;
+}
+
+.img {
+	width: 20rem;
+}
+
+.desc {
+	padding: 2rem;
+	font-size: 1.2rem;
+	text-align: center;
+	color: #747163;
+}
+
+@media (min-width: 992px) {
+	.display {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.title {
+		font-size: 5rem;
+		padding: 1rem 0;
+	}
+
+	.img {
+		width: 27rem;
+	}
+
+	.desc {
+		width: 65rem;
+	}
+}

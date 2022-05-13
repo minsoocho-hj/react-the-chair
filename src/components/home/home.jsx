@@ -1,0 +1,40 @@
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import Header from '../header/header';
+import styles from './home.module.css';
+
+const Home = ({ onAuth }) => {
+	return (
+		<>
+			<div className={styles.display}>
+				<Header onAuth={onAuth} />
+				<section className={styles.section}>
+					<h1 className={styles.title}>
+						NOT JUST
+						<br />
+						ANOTHER
+						<br />
+						CHAIR
+					</h1>
+					<div className={styles.flex}>
+						<img
+							src='https://avantt.displaay.net/assets/images//machine.58a1ffb7.628.jpg'
+							alt=''
+							className={styles.img}
+						/>
+						<p className={styles.desc}>
+							At that time I was rather idealistic. 23 years old. I made friends
+							with a young architect, and I bought my first bicycle. I learned
+							to ride the bicycle and talked to this young fellow and told him
+							that the bicycle seems to be a perfect production because it
+							hasn’t changed in the last twenty, thirty years. It is still the
+							original bicycle form.
+						</p>
+					</div>
+				</section>
+			</div>
+		</>
+	);
+};
+
+export default Home;
