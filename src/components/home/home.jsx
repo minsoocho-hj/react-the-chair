@@ -1,13 +1,27 @@
-import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React, { useEffect } from 'react';
+
+import { useNavigate } from 'react-router-dom';
 import Header from '../header/header';
 import styles from './home.module.css';
+const Home = ({ authenticate, loginState, setLoginState }) => {
+	const navigate = useNavigate();
 
-const Home = ({ onAuth }) => {
+	const goToMaker = (userId) => {
+		navigate({ pathname: '/maker', id: userId });
+	};
+
+	useEffect(() => {
+		authenticate.onAuthChange((user) => user && goToMaker(user.uid));
+	});
+
 	return (
 		<>
 			<div className={styles.display}>
-				<Header onAuth={onAuth} />
+				<Header
+					authenticate={authenticate}
+					loginState={loginState}
+					setLoginState={setLoginState}
+				/>
 				<section className={styles.section}>
 					<h1 className={styles.title}>
 						NOT JUST

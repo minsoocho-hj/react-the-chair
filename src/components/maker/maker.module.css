@@ -1,0 +1,24 @@
+.maker {
+	display: flex;
+	flex-direction: column;
+}
+.section {
+	background-color: #767165;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+}
+
+@media (min-width: 992px) {
+	.maker {
+		flex-direction: row;
+	}
+
+	.section {
+		flex-direction: row;
+		height: 100vh;
+	}
+}

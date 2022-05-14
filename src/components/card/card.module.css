@@ -1,0 +1,39 @@
+.card {
+	width: 45rem;
+	border-bottom: 1px solid #212423;
+	padding: 2rem;
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+
+.img {
+	width: 180px;
+	height: 180px;
+	border-radius: 50%;
+	margin-right: 1rem;
+}
+
+.infos {
+	display: flex;
+	flex-direction: column;
+	align-items: baseline;
+	position: absolute;
+	top: 3.4rem;
+	left: 250px;
+}
+
+.desc {
+	font-size: 1.15rem;
+}
+
+@media (min-width: 992px) {
+	.img {
+		width: 220px;
+		height: 220px;
+	}
+
+	.infos {
+		left: 280px;
+	}
+}

@@ -1,0 +1,93 @@
+.editor {
+	padding: 2rem 4rem;
+	background-color: #212423;
+	width: 100%;
+}
+
+.h2 {
+	color: #757164;
+	font-weight: 300;
+	font-size: 4rem;
+	font-style: italic;
+	line-height: 5rem;
+	margin-bottom: 2rem;
+}
+.form {
+	display: flex;
+	flex-direction: column;
+}
+
+input {
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid #757164;
+	padding: 1rem;
+	margin: 0.4rem;
+	color: white;
+}
+
+input:focus {
+	outline: none;
+}
+
+textarea:focus {
+	outline: none;
+}
+
+.desc {
+	padding: 1rem;
+	margin: 0.4rem;
+	color: white;
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid #757164;
+}
+
+.btn {
+	background-color: transparent;
+	color: #757164;
+	border: none;
+	font-size: 2rem;
+	font-weight: 300;
+	font-style: italic;
+	line-height: 5rem;
+}
+
+.btn:hover {
+	font-weight: 400;
+}
+
+.btn {
+	display: inline-block;
+	position: relative;
+	color: #757164;
+}
+
+.btn:after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	transform: scaleX(0);
+	height: 2px;
+	bottom: 0;
+	left: 0;
+	background-color: #757164;
+	transform-origin: bottom right;
+	transition: transform 0.25s ease-out;
+}
+
+.btn:hover:after {
+	transform: scaleX(1);
+	transform-origin: bottom left;
+}
+
+@media (min-width: 992px) {
+	.editor {
+		width: 40%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-evenly;
+		margin-right: 5rem;
+	}
+}
