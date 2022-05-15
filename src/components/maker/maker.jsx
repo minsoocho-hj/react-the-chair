@@ -7,6 +7,24 @@ import styles from './maker.module.css';
 
 const Maker = ({ authenticate, loginState, setLoginState }) => {
 	const [userId, setUserId] = useState();
+	const [cards, setCards] = useState({});
+
+	const onAdd = (card) => {
+		setCards((cards) => {
+			const updated = { ...cards };
+			updated[card.id] = card;
+			console.log(updated);
+			return updated;
+		});
+	};
+
+	const onDelete = (card) => {
+		setCards((cards) => {
+			const updated = { ...cards };
+			delete updated[card.id];
+			return updated;
+		});
+	};
 
 	const navigate = useNavigate();
 	// useEffect(() => {
@@ -34,8 +52,8 @@ const Maker = ({ authenticate, loginState, setLoginState }) => {
 					setLoginState={setLoginState}
 				/>
 				<section className={styles.section}>
-					<Editor />
-					<CardList />
+					<Editor onAdd={onAdd} />
+					<CardList cards={cards} onDelete={onDelete} />
 				</section>
 			</div>
 		</>

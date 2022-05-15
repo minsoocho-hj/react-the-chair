@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styles from './card.module.css';
-const Card = () => {
+const Card = ({ card, onDelete }) => {
 	return (
 		<div className={styles.card}>
 			<img
@@ -10,11 +10,16 @@ const Card = () => {
 				className={styles.img}
 			/>
 			<div className={styles.infos}>
+				<button className={styles.delete} onClick={() => onDelete(card)}>
+					Delete
+				</button>
 				<div>
-					<h3 className={styles.title}>Title - Designer, year</h3>
+					<h3 className={styles.title}>{card.title} - </h3>
+					<h4 className={styles.designer}> {card.designer},</h4>
+					<h4 className={styles.year}>{card.year}</h4>
 				</div>
-				<h3 className={styles.brand}>brand</h3>
-				<p className={styles.desc}>Description</p>
+				<h4 className={styles.brand}>{card.brand}</h4>
+				<p className={styles.desc}>{card.desc}</p>
 			</div>
 		</div>
 	);

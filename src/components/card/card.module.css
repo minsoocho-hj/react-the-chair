@@ -5,9 +5,14 @@
 	display: flex;
 	align-items: center;
 	position: relative;
+	height: 20rem;
+	overflow-y: scroll;
 }
 
 .img {
+	position: sticky;
+	top: 1rem;
+	left: 0;
 	width: 180px;
 	height: 180px;
 	border-radius: 50%;
@@ -23,8 +28,32 @@
 	left: 250px;
 }
 
+.infos div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .desc {
 	font-size: 1.15rem;
+	width: 330px;
+	overflow-y: scroll;
+	text-align: left;
+}
+
+.delete {
+	background-color: transparent;
+	outline: none;
+	border: none;
+	position: absolute;
+	top: 0;
+	right: -3rem;
+	opacity: 0.7;
+}
+
+.delete:hover {
+	font-weight: 500;
+	opacity: 1;
 }
 
 @media (min-width: 992px) {
@@ -35,5 +64,13 @@
 
 	.infos {
 		left: 280px;
+	}
+
+	.desc {
+		width: 430px;
+	}
+
+	.delete {
+		right: 1rem;
 	}
 }

@@ -1,0 +1,6 @@
+@media (min-width: 992px) {
+	.cards {
+		height: 50rem;
+		overflow-x: scroll;
+	}
+}

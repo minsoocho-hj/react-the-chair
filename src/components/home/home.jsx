@@ -4,15 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../header/header';
 import styles from './home.module.css';
 const Home = ({ authenticate, loginState, setLoginState }) => {
-	// const navigate = useNavigate();
+	const navigate = useNavigate();
 
-	// const goToMaker = (userId) => {
-	// 	navigate({ pathname: '/maker', id: userId });
-	// };
+	const goToMaker = (userId) => {
+		navigate({ pathname: '/maker', id: userId });
+	};
 
-	// useEffect(() => {
-	// 	authenticate.onAuthChange((user) => user && goToMaker(user.uid));
-	// });
+	useEffect(() => {
+		authenticate.onAuthChange((user) => user && goToMaker(user.uid));
+	}, []);
 
 	return (
 		<>

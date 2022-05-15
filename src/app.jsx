@@ -14,7 +14,7 @@ function App({ authenticate }) {
 
 	useEffect(() => {
 		authenticate.onAuthChange((user) => user && goToMaker(user.uid));
-	});
+	}, []);
 
 	return (
 		<>
