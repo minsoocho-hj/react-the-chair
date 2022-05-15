@@ -33,6 +33,9 @@
 }
 
 @media (min-width: 992px) {
+	.section {
+		height: 100vh;
+	}
 	.display {
 		display: flex;
 		flex-direction: row;
@@ -40,14 +43,13 @@
 
 	.title {
 		font-size: 5rem;
-		padding: 1rem 0;
 	}
 
 	.img {
-		width: 27rem;
+		width: 16rem;
 	}
 
 	.desc {
-		width: 65rem;
+		width: 70rem;
 	}
 }

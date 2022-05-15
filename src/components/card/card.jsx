@@ -11,7 +11,7 @@ const Card = ({ card, onDelete }) => {
 			/>
 			<div className={styles.infos}>
 				<button className={styles.delete} onClick={() => onDelete(card)}>
-					Delete
+					X
 				</button>
 				<div>
 					<h3 className={styles.title}>{card.title} - </h3>

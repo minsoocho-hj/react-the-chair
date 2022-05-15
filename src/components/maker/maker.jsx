@@ -5,7 +5,7 @@ import Editor from '../editor/editor';
 import Header from '../header/header';
 import styles from './maker.module.css';
 
-const Maker = ({ authenticate, loginState, setLoginState }) => {
+const Maker = ({ authenticate, loginState, setLoginState, ImgFileInput }) => {
 	const [userId, setUserId] = useState();
 	const [cards, setCards] = useState({});
 
@@ -52,7 +52,7 @@ const Maker = ({ authenticate, loginState, setLoginState }) => {
 					setLoginState={setLoginState}
 				/>
 				<section className={styles.section}>
-					<Editor onAdd={onAdd} />
+					<Editor onAdd={onAdd} ImgFileInput={ImgFileInput} />
 					<CardList cards={cards} onDelete={onDelete} />
 				</section>
 			</div>

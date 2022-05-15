@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import styles from './editor.module.css';
 
-const Editor = ({ onAdd }) => {
+const Editor = ({ onAdd, ImgFileInput }) => {
 	const formRef = useRef();
 	const titleRef = useRef();
 	const brandRef = useRef();
@@ -22,6 +22,10 @@ const Editor = ({ onAdd }) => {
 
 		formRef.current.reset();
 		onAdd(card);
+	};
+
+	const onFileChange = () => {
+		console.log('onFile');
 	};
 	return (
 		<div className={styles.editor}>
@@ -54,7 +58,7 @@ const Editor = ({ onAdd }) => {
 					placeholder='Designed year'
 					className={styles.year}
 				/>
-				<input type='file' className={styles.img} />
+				<ImgFileInput onFileChange={onFileChange} />
 				<textarea
 					type='text'
 					ref={descRef}

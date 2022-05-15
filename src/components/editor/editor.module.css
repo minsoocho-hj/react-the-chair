@@ -1,5 +1,5 @@
 .editor {
-	padding: 2rem 4rem;
+	padding: 1rem;
 	background-color: #212423;
 	width: 100%;
 }
@@ -15,6 +15,8 @@
 .form {
 	display: flex;
 	flex-direction: column;
+	width: 100%;
+	padding: 0 2rem;
 }
 
 input {
@@ -36,7 +38,6 @@ textarea:focus {
 
 .desc {
 	padding: 1rem;
-	margin: 0.4rem;
 	color: white;
 	background-color: transparent;
 	border: none;

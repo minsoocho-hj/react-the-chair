@@ -11,7 +11,7 @@ const CardList = ({ cards, onDelete }) => {
 					<Card card={cards[key]} key={key} onDelete={onDelete} />
 				))
 			) : (
-				<div>No data</div>
+				<div className={styles.nodata}>Add your chair.</div>
 			)}
 		</div>
 	);

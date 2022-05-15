@@ -4,7 +4,7 @@ import Home from './components/home/home';
 import Maker from './components/maker/maker';
 import { useEffect, useState } from 'react';
 
-function App({ authenticate }) {
+function App({ authenticate, ImgFileInput }) {
 	const [loginState, setLoginState] = useState(false);
 	const navigate = useNavigate();
 
@@ -36,6 +36,7 @@ function App({ authenticate }) {
 							authenticate={authenticate}
 							loginState={loginState}
 							setLoginState={setLoginState}
+							ImgFileInput={ImgFileInput}
 						/>
 					}
 				/>
