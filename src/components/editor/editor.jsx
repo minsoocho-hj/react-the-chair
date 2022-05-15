@@ -11,7 +11,7 @@ const Editor = (props) => (
 			<input type='text' placeholder='Title' className={styles.title} />
 			<input type='text' placeholder='Brand' className={styles.brand} />
 			<input type='text' placeholder='Designer' className={styles.designer} />
-			<input type='text' placeholder='Desinged year' className={styles.year} />
+			<input type='text' placeholder='Designed year' className={styles.year} />
 			<input type='file' className={styles.img} />
 			<textarea
 				type='text'
