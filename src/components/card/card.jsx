@@ -1,5 +1,3 @@
-import React from 'react';
-
 import styles from './card.module.css';
 const Card = ({ card, onDelete }) => {
 	return (
