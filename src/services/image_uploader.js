@@ -4,17 +4,14 @@ class ImageUpload {
 		const formData = new FormData();
 
 		formData.append('file', file);
-		formData.append(
-			'upload_preset',
-			'https://res.cloudinary.com/djfyvcyg6/image/upload/v1643113060/000043380025_akkqhd.jpg'
-		);
+		formData.append('upload_preset', 'furniture');
 
-		await fetch(url, {
+		const result = await fetch(url, {
 			method: 'POST',
 			body: formData,
-		}).then((response) => {
-			return response.json();
 		});
+
+		return await result.json();
 	}
 }
 

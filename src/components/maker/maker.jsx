@@ -52,7 +52,7 @@ const Maker = ({ authenticate, loginState, setLoginState, ImgFileInput }) => {
 					setLoginState={setLoginState}
 				/>
 				<section className={styles.section}>
-					<Editor onAdd={onAdd} ImgFileInput={ImgFileInput} />
+					<Editor ImgFileInput={ImgFileInput} onAdd={onAdd} cards={cards} />
 					<CardList cards={cards} onDelete={onDelete} />
 				</section>
 			</div>

@@ -1,13 +1,17 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './editor.module.css';
 
-const Editor = ({ onAdd, ImgFileInput }) => {
+const Editor = ({ onAdd, ImgFileInput, cards }) => {
 	const formRef = useRef();
 	const titleRef = useRef();
 	const brandRef = useRef();
 	const designerRef = useRef();
 	const yearRef = useRef();
 	const descRef = useRef();
+	const [file, setFile] = useState({ fileURL: null });
+	const onFileChange = (file) => {
+		setFile({ ...cards, fileURL: file.url });
+	};
 
 	const onSubmit = (e) => {
 		e.preventDefault();
@@ -18,15 +22,15 @@ const Editor = ({ onAdd, ImgFileInput }) => {
 			designer: designerRef.current.value || '',
 			year: yearRef.current.value || '',
 			desc: descRef.current.value || '',
+			fileURL:
+				file.fileURL ||
+				'https://www.eamesoffice.com/wp-content/uploads/2014/03/Jim-Sugar_1.jpg',
 		};
 
 		formRef.current.reset();
 		onAdd(card);
 	};
 
-	const onFileChange = () => {
-		console.log('onFile');
-	};
 	return (
 		<div className={styles.editor}>
 			<div className={styles.h2}>
