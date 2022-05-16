@@ -5,17 +5,38 @@ import Editor from '../editor/editor';
 import Header from '../header/header';
 import styles from './maker.module.css';
 
-const Maker = ({ authenticate, loginState, setLoginState, ImgFileInput }) => {
-	const [userId, setUserId] = useState();
-	const [cards, setCards] = useState({});
+const Maker = ({
+	cardRepository,
+	authenticate,
+	loginState,
+	setLoginState,
+	ImgFileInput,
+}) => {
+	const navigate = useNavigate();
+	const navigateState = useNavigate().state;
+	const [userId, setUserId] = useState(navigateState && navigateState.id);
+	const [cards, setCards] = useState({
+		1: {
+			id: 1,
+			title: 'Example - Stool 60',
+			brand: 'artek',
+			fileURL:
+				'https://res.cloudinary.com/artek/image/upload/w_2614/v1652083179/products/stool-60/Artek_Stool_New-6327957.jpg',
+			fileName: 'Stool60',
+			designer: 'Alvar aalto',
+			year: 1930,
+			desc: 'this is stool designed by alvar...',
+		},
+	});
 
 	const onAdd = (card) => {
 		setCards((cards) => {
 			const updated = { ...cards };
 			updated[card.id] = card;
-			console.log(updated);
+
 			return updated;
 		});
+		cardRepository.saveCard(userId, card);
 	};
 
 	const onDelete = (card) => {
@@ -24,14 +45,18 @@ const Maker = ({ authenticate, loginState, setLoginState, ImgFileInput }) => {
 			delete updated[card.id];
 			return updated;
 		});
+		cardRepository.removeCard(userId, card);
 	};
 
-	const navigate = useNavigate();
-	// useEffect(() => {
-	// 	if (!userId) {
-	// 		navigate('/');
-	// 	}
-	// }, [userId]);
+	useEffect(() => {
+		if (!userId) {
+			return;
+		}
+		const stopSync = cardRepository.syncCard(userId, (cards) => {
+			setCards(cards);
+		});
+		return () => stopSync();
+	}, [userId]);
 
 	useEffect(() => {
 		authenticate.onAuthChange((user) => {
@@ -41,7 +66,7 @@ const Maker = ({ authenticate, loginState, setLoginState, ImgFileInput }) => {
 				navigate('/');
 			}
 		});
-	});
+	}, []);
 
 	return (
 		<>
