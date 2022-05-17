@@ -29,6 +29,7 @@ const Maker = ({
 	};
 
 	const onDelete = (card) => {
+		console.log('d click');
 		setCards((cards) => {
 			const updated = { ...cards };
 			delete updated[card.id];
