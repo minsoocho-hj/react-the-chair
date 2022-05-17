@@ -7,11 +7,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Authentication from './services/authentication';
 import ImageUpload from './services/image_uploader';
 import FileUploader from './components/fileUploader/fileUploader';
-import CardRepository from './services/database';
+import CardRepository from './services/card_repository';
 
 const authenticate = new Authentication();
 const imageUploader = new ImageUpload();
 const cardRepository = new CardRepository();
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const ImgFileInput = (props) => (
 	<FileUploader {...props} imageUploader={imageUploader} />

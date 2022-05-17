@@ -1,9 +1,18 @@
 import React, { useEffect } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 import Header from '../header/header';
 import styles from './home.module.css';
 const Home = ({ authenticate, loginState, setLoginState }) => {
+	const navigate = useNavigate();
+
+	const goToMaker = (userId) => {
+		navigate('./maker', { state: { id: userId } });
+	};
+
+	useEffect(() => {
+		authenticate.onAuthChange((user) => user && goToMaker(user.uid));
+	}, []);
+
 	return (
 		<>
 			<div className={styles.display}>

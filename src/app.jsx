@@ -6,15 +6,6 @@ import { useEffect, useState } from 'react';
 
 function App({ ImgFileInput, authenticate, cardRepository }) {
 	const [loginState, setLoginState] = useState(false);
-	const navigate = useNavigate();
-
-	const goToMaker = (userId) => {
-		navigate({ pathname: '/maker', id: userId });
-	};
-
-	useEffect(() => {
-		authenticate.onAuthChange((user) => user && goToMaker(user.uid));
-	}, []);
 
 	return (
 		<>

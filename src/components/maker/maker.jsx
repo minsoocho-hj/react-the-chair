@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import CardList from '../cardlist/cardlist';
 import Editor from '../editor/editor';
 import Header from '../header/header';
@@ -13,21 +13,10 @@ const Maker = ({
 	ImgFileInput,
 }) => {
 	const navigate = useNavigate();
-	const navigateState = useNavigate().state;
-	const [userId, setUserId] = useState(navigateState && navigateState.id);
-	const [cards, setCards] = useState({
-		1: {
-			id: 1,
-			title: 'Example - Stool 60',
-			brand: 'artek',
-			fileURL:
-				'https://res.cloudinary.com/artek/image/upload/w_2614/v1652083179/products/stool-60/Artek_Stool_New-6327957.jpg',
-			fileName: 'Stool60',
-			designer: 'Alvar aalto',
-			year: 1930,
-			desc: 'this is stool designed by alvar...',
-		},
-	});
+
+	const location = useLocation().state;
+	const [userId, setUserId] = useState(location && location.id);
+	const [cards, setCards] = useState({});
 
 	const onAdd = (card) => {
 		setCards((cards) => {
