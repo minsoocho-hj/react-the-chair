@@ -18,7 +18,7 @@ In the project directory, you can run:
 ## 💪 Tech stacks 
 - <strong>React.js</strong>
 - <strong>Cloudinary</strong> for image uploading
-- <strong>Firebase</strong>(Authenticatio, Realtime database)
+- <strong>Firebase</strong>(Authentication, Realtime database)
 - <strong>JavaScript</strong>
 - <strong>postCSS</strong>
 - <strong>Deploy with netlify.</strong>
