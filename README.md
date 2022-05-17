@@ -2,15 +2,14 @@
 
 # THE CHAIR 🪑
 ### NOT JUST ANOTHER CHAIR
-DEMO  : https://furniture-archive.netlify.app/
-<table align="center">
-  <tr>
-    <td><img width="1000" alt="Screen Shot 2022-05-12 at 6 56 03 PM" src="https://user-images.githubusercontent.com/71766604/168140392-88646a73-edc4-4d22-8dbd-c67398044009.png">
- </td>
-    <td> <img width="1000" alt="Screen Shot 2022-05-12 at 6 55 50 PM" src="https://user-images.githubusercontent.com/71766604/168140418-d0cd523f-1e39-4004-8cc1-812981f2b0f2.png">
-</td>
-  </tr>
-</table>
+DEMO  : https://the-chair.netlify.app/
+
+
+
+<img width="1439" alt="Screen Shot 2022-05-17 at 6 23 13 PM" src="https://user-images.githubusercontent.com/71766604/168877578-f388fb70-b1e9-4f12-9b89-10b5be1de301.png">    
+
+<img width="1440" alt="Screen Shot 2022-05-17 at 6 29 24 PM" src="https://user-images.githubusercontent.com/71766604/168877725-4a5886de-9114-4e75-87f0-3dd6a4ec5f07.png">
+
 
 In the project directory, you can run:
 
@@ -23,8 +22,7 @@ In the project directory, you can run:
 - <strong>JavaScript</strong>
 - <strong>postCSS</strong>
 - <strong>Deploy with netlify.</strong>
-- fontawesome, bootstrap, 
-
+- Bootstrap, 
 
 
 ## features
@@ -34,6 +32,7 @@ In the project directory, you can run:
 - '/maker' (edit page)
 - redirect to '/maker' page when user Sign In.
 - redirect to '/' (homeopage) when user Logged out.
+- User only can access main page when logged out. 
 
    
 ###  2. Firebase Google Authentication
@@ -52,26 +51,35 @@ In the project directory, you can run:
        (To avoid unnecessary networking while taking a unit test, later on, inject mock class when its need test)
      
      
-<img width="182" alt="image" src="https://user-images.githubusercontent.com/71766604/168264157-52c8a09d-3245-4234-be4b-2f3cf1813cde.png">
+<img width="280" alt="image" src="https://user-images.githubusercontent.com/71766604/168878463-ae68ccab-d4d3-4c87-bdf8-05f57b5bc405.png">
 
-- firebase authentication
+- firebase - authentication.js
 ```javascript
 import firebaseApp from './firebaseConfig';
-import firebase from 'firebase';
+import {
+	getAuth,
+	signOut,
+	signInWithPopup,
+	GoogleAuthProvider,
+	onAuthStateChanged,
+} from 'firebase/auth';
 
 class Authentication {
-	login(providerName) {
-		const authProvider = new firebase.auth[`${providerName}AuthProvider`]();
-		return firebaseApp.auth().signInWithPopup(authProvider);
+	login() {
+		const provider = new GoogleAuthProvider();
+		const auth = getAuth();
+		return signInWithPopup(auth, provider);
 	}
 
 	logout() {
-		return firebase.auth().signOut();
+		const auth = getAuth();
+		return signOut(auth);
 	}
 
-	onAuthChange(onUserChanged) {
-		firebaseApp.auth().onAuthStateChanged((user) => {
-			onUserChanged(user);
+	onAuthChange(onChangeUser) {
+		const auth = getAuth();
+		onAuthStateChanged(auth, (user) => {
+			onChangeUser(user);
 		});
 	}
 }
@@ -79,46 +87,56 @@ class Authentication {
 export default Authentication;
 
 ```
-- firebase realtime-database (Sava/Delete)
+- firebase realtime-database (Save/Delete) - card_repository.js
 ```javascript
-import firebaseApp from './firebaseConfig';
+import { getDatabase, ref, set, remove, onValue, off } from 'firebase/database';
 
 class CardRepository {
 	syncCard(userId, onUpdate) {
-		const ref = firebaseApp.database().ref(`${userId}/cards/`);
-		ref.on('value', (snapshot) => {
+		const db = getDatabase();
+		const query = ref(db, `${userId}/cards`);
+		onValue(query, (snapshot) => {
 			const value = snapshot.val();
 			value && onUpdate(value);
 		});
-		return () => ref.off();
+		return () => off(query);
 	}
 	saveCard(userId, card) {
-		firebaseApp.database().ref(`${userId}/cards/${card.id}`).set(card);
+		const db = getDatabase();
+		set(ref(db, `${userId}/cards/${card.id}`), {
+			1: userId,
+			2: card,
+		});
 	}
 
 	removeCard(userId, card) {
-		firebaseApp.database().ref(`${userId}/cards/${card.id}`).remove();
+		const db = getDatabase();
+		const cardRef = ref(db, `${userId}/cards/${card.id}`);
+		remove(cardRef);
 	}
 }
 
 export default CardRepository;
 
+
 ```
-- Cloudinary image uploading
+
+
+- Cloudinary image uploading - image_upload.js
 ```javascript
 class ImageUpload {
 	async upload(file) {
-		const data = new FormData();
-		data.append('file', file);
-		data.append('upload_preset', 'furniture');
+		const url = 'https://api.cloudinary.com/v1_1/**cloud_name**/image/upload';
+		const formData = new FormData();
 
-		const result = await fetch(
-			`https://api.cloudinary.com/v1_1/**cloudname**/image/upload`,
-			{
-				method: 'POST',
-				body: data,
-			}
-		);
+		formData.append('file', file);
+		formData.append('upload_preset', 'furniture');
+
+		const result = await fetch(url, {
+			method: 'POST',
+			body: formData,
+		});
+
 		return await result.json();
 	}
 }
@@ -129,22 +147,36 @@ export default ImageUpload;
 
 
 index.js
+
 ```javascript
 const authService = new Authentication();
 const imageUploader = new ImageUpload();
 const cardRepository = new CardRepository();
  ```
+ 
  ### 5. Responsive design (Bootstrap grid system) 📲 
  
  breakpoint @media (min-width: 992px)
  <table align="center">
   <tr>
-    <td><img width="300" alt="image" src="https://user-images.githubusercontent.com/71766604/168141659-35ef1425-5f3e-4632-9a25-d9d5e75c5247.png">
+	        <td> <img width="350" alt="Screen Shot 2022-05-17 at 6 31 36 PM" src="https://user-images.githubusercontent.com/71766604/168878994-b0e2a345-5c7d-4603-b8a4-61ce6fd9baff.png">
 </td>
-         <td><img width="330" alt="image" src="https://user-images.githubusercontent.com/71766604/168141793-51c7e434-dca1-488e-8d9b-df28d7a76197.png">
+    <td> <img width="350" alt="Screen Shot 2022-05-17 at 6 30 59 PM" src="https://user-images.githubusercontent.com/71766604/168878983-51567ea2-41ef-46fa-b900-ed260a4b006f.png">
 </td>
+   
   </tr>
+<td><img width="350" alt="Screen Shot 2022-05-17 at 6 31 11 PM" src="https://user-images.githubusercontent.com/71766604/168879013-d55bd73a-9eaa-4d2f-a92c-363a8dbce36d.png"></td>
  </table>
+ 
+
+
+
+
+
+
+ 
+ 
+ 
     
 
 ## Future improvement plan 📝
