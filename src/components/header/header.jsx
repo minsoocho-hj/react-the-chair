@@ -20,6 +20,7 @@ const Header = ({ authenticate, loginState, setLoginState }) => {
 			user ? setLoginState(true) : setLoginState(false)
 		);
 	}, [loginState]);
+  
 	return (
 		<div className={styles.header}>
 			<h1 className={`${styles.title} ${styles.rotate} `}>The chair</h1>

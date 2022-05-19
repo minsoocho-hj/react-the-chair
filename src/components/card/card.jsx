@@ -1,5 +1,6 @@
 import styles from './card.module.css';
-const Card = ({ card, onDelete }) => {
+import { memo } from 'react';
+const Card = memo(({ card, onDelete }) => {
 	const { title, brand, designer, year, desc, fileURL } = card[2];
 	return (
 		<div className={styles.card}>
@@ -22,6 +23,6 @@ const Card = ({ card, onDelete }) => {
 			</div>
 		</div>
 	);
-};
+});
 
 export default Card;
