@@ -23,7 +23,7 @@ input {
 	background-color: transparent;
 	border: none;
 	border-bottom: 1px solid #757164;
-	padding: 1rem;
+	padding: 1rem 0.3rem;
 	margin: 0.4rem;
 	color: white;
 }
@@ -37,11 +37,11 @@ textarea:focus {
 }
 
 .desc {
-	padding: 1rem;
 	color: white;
 	background-color: transparent;
 	border: none;
 	border-bottom: 1px solid #757164;
+	padding: 1rem 0.3rem;
 }
 
 .btn {
