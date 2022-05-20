@@ -11,6 +11,7 @@
 	font-style: italic;
 	line-height: 5rem;
 	margin-bottom: 2rem;
+	letter-spacing: -0.2rem;
 }
 .form {
 	display: flex;
@@ -45,20 +46,22 @@ textarea:focus {
 }
 
 .btn {
-	background-color: transparent;
-	color: #757164;
-	border: none;
-	font-size: 2rem;
-	font-weight: 300;
+	background-color: #757164;
+	color: white;
 	font-style: italic;
-	line-height: 5rem;
+	width: 100px;
+	height: 40px;
+	margin: auto;
+	margin-top: 1rem;
+	border: none;
+	opacity: 0.5;
 }
 
 .btn:hover {
-	font-weight: 400;
+	opacity: 0.8;
 }
 
-.btn {
+/* .btn {
 	display: inline-block;
 	position: relative;
 	color: #757164;
@@ -75,12 +78,12 @@ textarea:focus {
 	background-color: #757164;
 	transform-origin: bottom right;
 	transition: transform 0.25s ease-out;
-}
+} */
 
-.btn:hover:after {
+/* .btn:hover:after {
 	transform: scaleX(1);
 	transform-origin: bottom left;
-}
+} */
 
 @media (min-width: 992px) {
 	.editor {

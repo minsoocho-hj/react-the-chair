@@ -67,6 +67,9 @@
 	.header {
 		z-index: 1;
 	}
+	.title {
+		font-size: 5rem;
+	}
 }
 
 @media (min-width: 992px) {
